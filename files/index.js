@@ -1,5 +1,3 @@
-
-
 $.getJSON(
     "https://spreadsheets.google.com/feeds/cells/1xEz5wfWSwXbAgWhgvJxfxSDhNGf5w8hqVpAFbbAViEo/1/public/full?alt=json", // ",
     function(data) {
@@ -84,5 +82,35 @@ $.getJSON(
   
   } 
       console.log(countylist)//will show the list of county objects in console
-    }
-  );
+  
+  let allCounties = countylist.map(eachCounty=>{return eachCounty.name})
+  let list = document.getElementById("countyList");
+
+  for (i = 0 ; i < allCounties.length; i++){
+    list.innerHTML += `<option value="${allCounties[i]}">`
+  }
+
+  const selectElement = document.querySelector('.citySelector');
+
+  selectElement.addEventListener('change', (event) => {
+    const result = document.querySelector('.timeline');
+    result.innerHTML = `
+  <h2 class="cityTitle">County of ${event.target.value}</h2>
+  <ol>
+    <li class="go">Rent Past Due</li>
+    <li class="go">Landlord Sends Notice</li><br>
+    <li class="textbetween">3 Days </li><br>
+    <li class="go">Landlord files for eviction in court</li>
+    <li class="go">Clerk issues summons</li>
+    <li class="go">Tenant is served eviction papers</li><br>
+    <li class="textbetween">5 Days </li><br>
+    <li class="go">Tenant must pay debts to court registry</li><br>
+    <li class="textbetween">Can't Pay </li><br>
+    <li class="go">Landlord files for default judgment.</li>
+    <li class="go">Judge rules(No hearing required)</li>
+    <li class="go">Clerk issues writ of possession</li>
+    <li class="stop">Sheriff enforces writ of possession</li>
+  </ol>`;
+  });
+  
+    });
