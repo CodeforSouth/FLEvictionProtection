@@ -74,8 +74,8 @@ $.getJSON(
         
         buildRow(event.target.value);
         console.log(row)
-        console.log(colHeads)
-        let countyDetails=[...row]
+        // console.log(colHeads)
+  
         row.map(eachItem=>{
           for (let m=0;m<colHeads.length;m++){
             if (eachItem.cellnum==colHeads[m].colNum){
@@ -83,24 +83,37 @@ $.getJSON(
             }
           }
         })
-  
-        result.innerHTML = `
-        <h2 class="cityTitle">County of ${event.target.value}</h2>
-        <ol>
-          <li class=${stopGoClass(row[2].text)}>${row[2].title}</li>
-          <li class=${stopGoClass(row[3].text)}>${row[3].title}</li><br>
-          <li class="textbetween">3 Days </li><br>
-          <li class=${stopGoClass(row[4].text)}>${row[4].title}</li>
-          <li class=${stopGoClass(row[5].text)}>${row[5].title}</li>
-          <li class=${stopGoClass(row[6].text)}>${row[6].title}</li><br>
-          <li class="textbetween">5 Days </li><br>
-          <li class=${stopGoClass(row[7].text)}>${row[7].title}</li><br>
-          <li class="textbetween">Can't Pay </li><br>
-          <li class=${stopGoClass(row[8].text)}>${row[8].title}</li>
-          <li class=${stopGoClass(row[9].text)}>${row[9].title}</li>
-          <li class=${stopGoClass(row[10].text)}>${row[10].title}</li>
-          <li class=${stopGoClass(row[11].text)}>${row[11].title}</li>
-        </ol>`     
+        // row = row.filter(eachItem=>{
+        //   return eachItem.cellnum < "P"
+        // })
+        // console.log(row)
+  //Build string for html text
+       let strng = `<h2 class="cityTitle">County of ${event.target.value}</h2>
+        <ol>`
+       let bottomLine=""
+       let links=""
+       let cells=["R","U","v"]
+       for (n=1;n<row.length;n++){
+         
+         if(row[n].title==="Until"){
+          strng +=`<li class="date">${row[n].title}: ${row[n].text}</li>`
+         } else
+         if (row[n].cellnum < "O"){
+          strng += `<li class=${stopGoClass(row[n].text)}>${row[n].title}</li>`
+         } else
+         if (row[n].cellnum === "O"){
+           strng +=`<li class="date">${row[n].title}: ${row[n].text}</li>`
+         } else
+         if(row[n].title==="Bottom Line"){
+          bottomLine +=`<li class="bottomLine">${row[n].title}: ${row[n].text}</li>`       
+         } else
+         if(cells.includes(row[n].cellnum)){
+          links +=`<li class="county-links"><a href=${row[n].text}>${row[n].title}</a></li>`
+         }
+         console.log(strng)
+        }
+       
+        result.innerHTML = strng+`${bottomLine+links}</ol>`     
       }
     })
    }
