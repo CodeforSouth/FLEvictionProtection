@@ -81,8 +81,9 @@ $.getJSON(
     countylist[i].categories=columnModel
   
   } 
-      console.log(countylist)//will show the list of county objects in console
+  console.log(countylist)//will show the list of county objects in console
   
+  //Populate dropdown with counties...
   let allCounties = countylist.map(eachCounty=>{return eachCounty.name})
   let list = document.getElementById("countyList");
 

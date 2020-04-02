@@ -6,31 +6,27 @@
     <title>Document</title>
     <link rel='stylesheet' href='files//style.css'/>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="files/index.js"></script>
+    <script src="files/index1.js"></script>
 
 </head>
 <body>
-    <input class="citySelector" type="text" list="countyList" placeholder="Select your County" onmouseover="this.value=''" autocomplete="off" value = "">
-
-<div class="timeline">
-  <ol>
-    <li class="go">Rent Past Due</li>
-    <li class="go">Landlord Sends Notice</li><br>
-    <li class="textbetween">3 Days </li><br>
-    <li class="go">Landlord files for eviction in court</li>
-    <li class="go">Clerk issues summons</li>
-    <li class="go">Tenant is served eviction papers</li><br>
-    <li class="textbetween">5 Days </li><br>
-    <li class="go">Tenant must respond and pay past due rent to court debts</li><br>
-    <li class="textbetween">Can't Pay </li><br>
-    <li class="go">Landlord files for default judgment.</li>
-    <li class="go">Judge rules(No hearing required)</li>
-    <li class="go">Clerk issues writ of possession</li>
-    <li class="stop">Sheriff enforces writ of possession</li>
-  </ol>
-</div>
-
-<datalist id="countyList">
-  </datalist>
+  <div class="center">
+    <input class="citySelector" 
+           type="text" 
+           list="countyList" 
+           placeholder="Type or Select your County" 
+           onmouseover="this.value=''" 
+           autocomplete="off" 
+           value = "">
+    </input>
+    <div class="timeline">
+      <ol>
+        <li class="go">Step is Active</li>
+        <li class="stop">Step is Not Active</li>
+      </ol>
+    </div>
+  </div>
+  
+  <datalist id="countyList"></datalist>
 </body>
 </html>
