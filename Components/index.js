@@ -2,14 +2,14 @@
 // Francesca Jeah No Lee https://codepen.io/Francesca_G
 // Raphael Burkhardt https://codepen.io/zibobilo
 
-// Visit https://florida.evictionprotection.org/ to see the interface in action!
+// Visit https://florida.evictionprotection.org/ to see the interface in action.
 
 // API Call
 $.getJSON(
   "https://spreadsheets.google.com/feeds/cells/1xEz5wfWSwXbAgWhgvJxfxSDhNGf5w8hqVpAFbbAViEo/1/public/full?alt=json",
   function (data) {
     //Success
-    // console.log(`# Total Fields : ${data.feed.entry.length}`);
+    console.log(`# Total Fields : ${data.feed.entry.length}`);
     //Define columns and rows count    
     columns = Number(data.feed.gs$colCount.$t)
     rows = Number(data.feed.gs$rowCount.$t)
@@ -49,6 +49,7 @@ $.getJSON(
         return "go"
       }
     }
+    console.log(allCounty)
 
     const selectElement = document.querySelector('.citySelector')
 
@@ -57,6 +58,7 @@ $.getJSON(
 
       //Only the match between input and database values will retrieve results
       if (allCounty.includes(event.target.value)) {
+        console.log(event.target.value)
         let row = []
         let previousCellNum
 
@@ -64,13 +66,18 @@ $.getJSON(
         function buildRow(countySelection) {
 
           for (let j = 0; j < database.length; j++) {
+            
 
             if (database[j].content.$t.includes(countySelection) && database[j].gs$cell.col == 1) {
+              console.log(j)
+              console.log(database[j].gs$cell)
+              console.log(database[j].content.$t)
               let sameRow = database[j].gs$cell.row
               //will iterate through the 26 columns for a-z
               for (let r = j; r < j + columns; r++) {
 
                 if (sameRow == database[r].gs$cell.row) {
+                  console.log("hello")
                   row.push({ cellnum: database[r].title.$t.slice(0, 1), text: database[r].content.$t })
                 }
               }
@@ -98,20 +105,26 @@ $.getJSON(
         let cells = ["R", "U", "V", "W"]
         let counter = 0
         for (n = 2; n < row.length; n++) {
+          
 
           if (row[n].title === "Until") {
             //strng +=`<li class="date">${row[n].title}: ${row[n].text}</li>`
             strng = strng
           } else
+            if (row[n].title=== "Clerk issues summons") {
+            //strng +=`<li class="date">${row[n].title}: ${row[n].text}</li>`
+             strng += `<li class=${stopGoClass(row[n].text)}>${row[n].title} <span class="tooltip" data-tooltip="More information on what this means">?</span></li>`
+          } else
             if (row[n].cellnum < "O" && row[n].cellnum != "H") {
               counter++
+              
               strng += `<li class=${stopGoClass(row[n].text)}>${row[n].title}</li>`
               if (counter === 2) {
-                strng += '<li class="textbetween">3 Days </li><br>'
+                strng += '<br><li class="textbetween">3 Days </li><br>'
               } else if (counter === 5) {
-                strng += '<li class="textbetween">5 Days </li><br>'
+                strng += '<br><li class="textbetween">5 Days </li><br>'
               } else if (counter === 6) {
-                strng += '<li class="textbetween"> Cannot Pay </li><br>'
+                strng += '<br><li class="textbetween"> Cannot Pay </li><br>'
               }
             } else
               if (row[n].cellnum === "O") {
@@ -128,7 +141,8 @@ $.getJSON(
                     }
         }
         result.innerHTML = `<h2 class="cityTitle">${event.target.value} County</h2>
-      <ol>${bottomLine + strng + links + notes}</ol>`
+      <ol>${bottomLine}<li class="go">Step is Active</li>
+      <li class="stop">Step is Not Active</li><li></li>${strng + links + notes}</ol>`
       }
     })
   }
