@@ -10,24 +10,29 @@
 
 </head>
 <body>
-  <div class="center">
-    <input class="citySelector" 
-           type="text" 
-           list="countyList" 
-           placeholder="Search your County (e.g. Broward)" 
-           onmouseover="this.value=''" 
-           autocomplete="off" 
-           value = ""
-           onclick="this.value=''">
-    </input>
-    <div class="timeline">
-      <ol>
-        <li class="go">Step is Active</li>
-        <li class="stop">Step is Not Active</li>
-      </ol>
+  <div id="countySearchTool">
+    <div class="center">
+      <div class="alignsearch">
+        <input class="citySelector" 
+               type="text" 
+               list="countyList" 
+               placeholder="Search your County" 
+               onmouseover="this.value=''" 
+               autocomplete="off" 
+               value = ""
+               onclick="this.value=''">
+        <div class="statuscolor"></div>
+      </div>
+      <div class="timeline">
+        <ol>
+          <li class="go">Step is Active</li>
+          <li class="stop">Step is Not Active</li>
+        </ol>
+      </div>
+      <datalist id="countyList"></datalist>
+      
     </div>
+    
   </div>
-  
-  <datalist id="countyList"></datalist>
 </body>
 </html>

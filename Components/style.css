@@ -1,120 +1,193 @@
-.center {
-  width: fit-content;
-  margin: auto;
-  max-width: 360px;
-}
-
-.citySelector {
-  padding: 0 5px;
-  margin: 10px 10px;
-  border-radius: 4px;
-  height: 30px;
-  width: 210px;
-}
-
-.timeline {
-  margin: auto;
-}
-
-ol {
-  list-style-type: none;
-}
-
-li {
-  position: relative;
-  margin: 0px 0px 0px -39px;
-  padding-bottom: 1em;
-  padding-left: 25px;
-}
-
-li:before {
-  content: '';
-  background-color: 	#E8E8E8;
-  position: absolute;
-  bottom: -30px;
-  top: -10px;
-  left: 8px;
-  width: 4px;
-}
-
-li:after {
-  content: '';
-  position: absolute;
-  left: 0;
-  height: 20px;
-  width: 20px;
-}
-
-.go:after {
-  background-image: url("https://florida.evictionprotection.org/wp-content/uploads/2020/03/Step-Active.svg");
-  background-size: cover;
-}
-
-.stop:after {
-  background-image: url("https://florida.evictionprotection.org/wp-content/uploads/2020/03/Step-Supension.svg");
-  background-size: cover;
-}
-
-.stop {
-  color: 	#B8B8B8;
-}
-.textbetween {
-  font-weight: bold;
-}
-
-.cityTitle {
-  margin: 5px 0px 10px 30px;
-}
-
-.date{
-  font-weight: bolder
-}
-
-.bottomLine{
-  color:red
-}
-input::-webkit-calendar-picker-indicator {
-  display: none
-}
-
-.tooltip{
-position: relative;
-background: rgba(0,0,0,0.3);
-padding: 5px 10px;
-border-radius: 100%;
-font-size: 14px;
-cursor: help;
-}
-.tooltip::before, .tooltip::after{
-position: absolute;
-left: 50%;
-opacity: 0;
-transition: all ease 0.3s;
-}
-
-.tooltip::before{
-content: "";
-border-width: 10px 8px 1px;
-border-style: solid;
-border-color: rgba(0,0,0,0.3) transparent transparent transparent;
-top: 5px;
-margin-left: 20px;
-}
-
-.tooltip::after{
-content: attr(data-tooltip);
-background: rgba(0,0,0,0.3);
-top: 35px;
-transform: translateY(-100%);
-font-size: 14px;
-margin-left: 40px;
-width: 300px;
-border-radius: 10px;
-color: #fff;
-padding: 10px;
-}
-/* Hover states */
-
-.tooltip:hover::before, .tooltip:hover::after{
-opacity: 1;
-}
+  /* tests */
+  #countySearchTool div {
+    /*   border: 1px solid red; */
+    }
+    
+    /* Fonts */
+    #countySearchTool h2 {
+      padding: 0px 0px;
+      margin: 20px 0px;
+      font-size: 2rem;
+      text-align: center;
+    }
+    
+    #countySearchTool h4 {
+      padding: 0px 20px;
+      margin: 20px 0px;
+      font-size: 1.3rem;
+    }
+    
+    #countySearchTool h5 {
+      padding: 0px 20px;
+      margin: 0px;
+      font-size: 1rem;
+    }
+    
+    #countySearchTool p {
+      padding: 0px 20px;
+      text-align: justify;
+    }
+    
+    #countySearchTool [placeholder] {
+      font-size: 1rem;
+      padding: 0px 10px;
+    }
+    
+    /* Chevrons  */
+    #countySearchTool .chevron {
+      position: relative;
+      text-align: center;
+      padding: 1px 0px 20px 0px;
+      margin: 10px 0px 8px 0px;
+      height: 100%;
+      width: fit-content;
+      min-width: 100%;
+    }
+    
+    #countySearchTool .chevron:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 51%;
+      transform: skew(0deg, 6deg);
+      z-index: -5
+    }
+    #countySearchTool .chevron:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 50%;
+      transform: skew(0deg, -6deg);
+      z-index: -5;
+    }
+    
+    #countySearchTool .greencolor:before, #countySearchTool .greencolor:after {
+      background-color: #d3e9d9;
+    }
+    #countySearchTool .greencolor:hover:before, #countySearchTool .greencolor:hover:after {
+      background-color: rgb(170, 212, 181);
+    }
+    
+    #countySearchTool .redcolor:before, #countySearchTool .redcolor:after  {
+      background-color: #ffc0c4;
+    }
+    
+    #countySearchTool .redcolor:hover:before, #countySearchTool .redcolor:hover:after {
+      background-color: rgb(255, 139, 148);
+    }
+    
+    #countySearchTool .bluecolor:before, #countySearchTool .bluecolor:after {
+      background-color: #cfd1ec;
+    }
+    
+    #countySearchTool .bluecolor:hover:before, #countySearchTool .bluecolor:hover:after {
+      background-color: rgb(165, 169, 213);
+    }
+    
+    #countySearchTool .greencolor:before, #countySearchTool .greencolor:after, #countySearchTool .greencolor:hover:before, #countySearchTool .greencolor:hover:after,
+    #countySearchTool .redcolor:before, #countySearchTool .redcolor:after, #countySearchTool .redcolor:hover:before, #countySearchTool .redcolor:hover:after,
+    #countySearchTool .bluecolor:before, #countySearchTool .bluecolor:after, #countySearchTool .bluecolor:hover:before, #countySearchTool .bluecolor:hover:after {
+      -moz-transition: all 0.3s ease 0s;
+      -webkit-transition: all 0.3s ease 0s;
+      -ms-transition: all 0.3s ease 0s;
+      transition: all 0.3s ease 0s;
+      
+    }
+    
+    #countySearchTool .alignsearch {
+      text-align: center;
+      width: 100%;
+    }
+    
+    
+    /* general */
+    #countySearchTool .center {
+      width: fit-content;
+      margin: auto;
+      max-width: 500px;
+    }
+    
+    #countySearchTool .citySelector {
+      margin: 10px auto;
+      border-radius: 4px;
+      height: 40px;
+      width: fit-content;
+      min-width: 50%;
+    }
+    
+    #countySearchTool input {
+      border:2px solid red;
+      box-shadow:0 0 10px red;
+      outline:none;
+    }
+    
+    #countySearchTool input:focus {
+      border:1px solid red;
+      box-shadow:0 0 10px red;
+      outline:none;
+    }
+    
+    /* Timeline  */
+    
+    #countySearchTool .timeline {
+      margin: auto;
+    }
+    
+    #countySearchTool ol {
+      list-style-type: none;
+    }
+    
+    #countySearchTool li {
+      position: relative;
+      margin: 0px 0px 0px -35px;
+      padding-bottom: 1em;
+      padding-left: 25px;
+    }
+    
+    #countySearchTool li:before {
+      content: '';
+      background-color: 	#E8E8E8;
+      position: absolute;
+      bottom: -20px;
+      top: -10px;
+      left: 8px;
+      width: 4px;
+    }
+    
+    #countySearchTool li:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      height: 20px;
+      width: 20px;
+    }
+    
+    #countySearchTool .go:after {
+      background-image: url("https://florida.evictionprotection.org/wp-content/uploads/2020/03/Step-Active.svg");
+      background-size: cover;
+    }
+    
+    #countySearchTool .stop:after {
+      background-image: url("https://florida.evictionprotection.org/wp-content/uploads/2020/03/Step-Supension.svg");
+      background-size: cover;
+    }
+    
+    #countySearchTool .stop {
+      color: 	#B8B8B8;
+    }
+    
+    #countySearchTool .textbetween {
+      font-weight: bold;
+    }
+    
+    #countySearchTool .date{
+      font-weight: bolder
+    }
+    
+    #countySearchTool .bottomLine{
+      color:red
+    }
